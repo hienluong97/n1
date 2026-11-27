@@ -38,7 +38,7 @@ const GRAMMAR_TESTS = [
   {
     id: '2024-12',
     title: 'JLPT N1 – 12/2024',
-    source: 'Đề 2024年12月 · JLPT Mogi 完成版 241225 · đáp án tự giải',
+    source: 'Đề 2024年12月 · JLPT Mogi 完成版 241225 · đáp án tham khảo Yuuki Bùi',
     m5: [
       {
         no: 26,
@@ -116,9 +116,9 @@ const GRAMMAR_TESTS = [
         no: 35,
         q: '（大学で）\n先生「青木さん、今度の報告誌のモデルを青木さんにお願いできたらと思うんだけど、どうかな」\n青木「やりたいです。でも、私（　）」\n先生「もちろん」',
         options: ['だったらいいんですか', 'なんかでいいんですか', 'だったらいいんでしょう', 'なんかでいいんでしょうか'],
-        answer: 4,
-        point: 'N なんかでいいんでしょうか',
-        explain: '「私なんかでいいんでしょうか」: người như em mà cũng được sao ạ? (khiêm tốn + hỏi lịch sự với thầy). 「なんか」 hạ thấp bản thân; 「〜でしょうか」 lịch sự hơn 「〜ですか」, phù hợp nói với giáo viên.',
+        answer: 2,
+        point: 'N なんかでいいんですか',
+        explain: '「私なんかでいいんですか」: người như em mà cũng được ạ? 「なんか」 hạ thấp bản thân (khiêm tốn). Thầy đáp 「もちろん」 → câu hỏi xác nhận trực tiếp 「〜でいいんですか」. 「だったら」 không mang sắc thái khiêm tốn; 「〜んでしょうか」 mang ý băn khoăn tự hỏi hơn là hỏi xác nhận.',
       },
     ],
     m6: [
@@ -137,8 +137,8 @@ const GRAMMAR_TESTS = [
         after: '、コメディー作品だ。',
         star: 3,
         parts: ['真面目すぎる', '周りの人々とのトラブルが絶えない', 'がゆえに', '男の日常を描いた'],
-        order: [1, 3, 2, 4],
-        explain: '正直で｜真面目すぎる｜がゆえに｜周りの人々とのトラブルが絶えない｜男の日常を描いた、コメディー作品だ。「〜がゆえに」: vì ~ (văn viết). Phim hài kể về đời thường của người đàn ông vì quá thật thà, nghiêm túc nên rắc rối với mọi người không dứt.',
+        order: [2, 1, 4, 3],
+        explain: '正直で｜周りの人々とのトラブルが絶えない｜真面目すぎる｜男の日常を描いた｜がゆえに、コメディー作品だ。(theo đáp án tham khảo) 「〜がゆえに」: vì ~ (văn viết). Phim khắc họa đời thường của người đàn ông quá nghiêm túc, luôn gặp rắc rối với người xung quanh, chính vì thế mà thành phim hài.',
       },
       {
         no: 38,
