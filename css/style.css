@@ -1,12 +1,12 @@
 :root {
-  --bg: #f6f7f9;
-  --card: #ffffff;
-  --line: #e4e7ec;
-  --line-2: #d0d5dd;
-  --text: #1d2939;
-  --muted: #667085;
-  --accent: #3b5bdb;
-  --accent-soft: #edf1ff;
+  --bg: #fdf7e3;
+  --card: #fffdf6;
+  --line: #efe3bf;
+  --line-2: #e0cf9c;
+  --text: #3b2f1a;
+  --muted: #8a7a56;
+  --accent: #b7791f;
+  --accent-soft: #fdf0cc;
   --ok: #16a34a;
   --ok-soft: #e8f7ee;
   --bad: #dc2626;
@@ -70,27 +70,27 @@ button { font-family: inherit; cursor: pointer; border: 0; color: inherit; backg
 .set-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .set-card .t { font-size: 18px; font-weight: 900; }
 .set-card .m { color: var(--muted); font-size: 13.5px; font-weight: 700; margin-top: 3px; }
-.set-card .bar { height: 5px; border-radius: 99px; background: #eef0f3; margin-top: 12px; overflow: hidden; }
+.set-card .bar { height: 5px; border-radius: 99px; background: #f5ecd2; margin-top: 12px; overflow: hidden; }
 .set-card .bar i { display: block; height: 100%; background: var(--ok); border-radius: 99px; }
-.set-card .badge { position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 99px; background: #f2f4f7; color: var(--muted); }
+.set-card .badge { position: absolute; top: 12px; right: 12px; font-size: 12px; font-weight: 900; padding: 3px 8px; border-radius: 99px; background: #f8efd6; color: var(--muted); }
 .set-card .badge.good { background: var(--ok-soft); color: var(--ok); }
 .set-card.feature { border-color: var(--accent); border-width: 1.5px; }
 .set-card.wrongset { border-color: #f3b4b4; }
 .set-card .ico { display: none; }
 
 .foot { margin-top: 32px; color: var(--muted); font-size: 13px; text-align: center; font-weight: 600; }
-kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 12px; }
+kbd { font-family: var(--ui); background: #f5ecd2; border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 12px; }
 
 /* ---------- Màn chơi ---------- */
 .topbar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
 .icon-btn { width: 40px; height: 40px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); font-size: 16px; font-weight: 900; flex: none; }
 .icon-btn:hover { border-color: var(--line-2); }
-.progress { flex: 1; height: 8px; border-radius: 99px; background: #e9ecf1; overflow: hidden; }
+.progress { flex: 1; height: 8px; border-radius: 99px; background: #f1e6c6; overflow: hidden; }
 .progress i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 99px; transition: width .35s; }
 .pill { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; font-weight: 800; font-size: 14px; white-space: nowrap; }
 .pill.streak { color: var(--text); }
 
-.timer { height: 4px; border-radius: 99px; background: #e9ecf1; overflow: hidden; margin: -4px 0 14px; }
+.timer { height: 4px; border-radius: 99px; background: #f1e6c6; overflow: hidden; margin: -4px 0 14px; }
 .timer i { display: block; height: 100%; width: 100%; background: var(--text); transition: width 1s linear, background .3s; }
 .timer i.low { background: var(--bad); }
 
@@ -98,7 +98,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
   background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 26px;
   text-align: center; min-height: 220px; display: flex; flex-direction: column; justify-content: center; position: relative;
 }
-.qtag { position: absolute; top: 14px; left: 16px; font-size: 12.5px; font-weight: 800; padding: 4px 10px; border-radius: 99px; background: #f2f4f7; color: var(--muted); }
+.qtag { position: absolute; top: 14px; left: 16px; font-size: 12.5px; font-weight: 800; padding: 4px 10px; border-radius: 99px; background: #f8efd6; color: var(--muted); }
 .qtag .jp { margin-right: 6px; }
 .qset { position: absolute; top: 16px; right: 16px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
 .hint { color: var(--muted); font-weight: 700; font-size: 15px; margin: 24px 0 12px; }
@@ -123,7 +123,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 }
 .opt .mark { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; font-weight: 900; }
 .opt:disabled { cursor: default; }
-.answered .opt { color: #98a2b3; }
+.answered .opt { color: #b3a582; }
 .answered .opt.correct { color: var(--text); border-color: var(--ok); background: var(--ok-soft); }
 .answered .opt.correct .mark, .answered .opt.correct .k { color: var(--ok); border-color: var(--ok); }
 .answered .opt.wrong { color: var(--text); border-color: var(--bad); background: var(--bad-soft); animation: shake .3s; }
@@ -145,7 +145,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 .fb-info .mean { font-size: 17.5px; font-weight: 900; margin-bottom: 6px; }
 .fb-info .row { color: var(--muted); font-weight: 600; margin: 3px 0; }
 .fb-info .row b { color: var(--text); font-weight: 800; }
-.fb-info .ex { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: #f6f7f9; }
+.fb-info .ex { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: #fbf3dc; }
 .fb-info .ex .j { font-family: var(--jp); font-size: 16px; }
 .fb-info .ex .v { color: var(--muted); font-weight: 600; margin-top: 2px; }
 .trap { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 99px; background: #fff4e5; color: var(--mark); font-weight: 800; font-size: 13.5px; }
@@ -156,7 +156,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 .btn { padding: 12px 20px; border-radius: 10px; font-weight: 900; font-size: 15.5px; background: var(--card); border: 1.5px solid var(--line-2); transition: .12s; }
 .btn:hover { border-color: var(--text); }
 .btn.primary { background: var(--text); border-color: var(--text); color: #fff; }
-.btn.primary:hover { background: #000; }
+.btn.primary:hover { background: #241c0e; }
 .btn.ghost { border-color: transparent; color: var(--muted); }
 .btn.ghost:hover { color: var(--text); border-color: var(--line); }
 
@@ -165,7 +165,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 
 /* ---------- Kết quả ---------- */
 .result-top { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; }
-.ring { --p: 0; width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--ok) calc(var(--p) * 1%), #e9ecf1 0); }
+.ring { --p: 0; width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--ok) calc(var(--p) * 1%), #f1e6c6 0); }
 .ring > div { width: 122px; height: 122px; border-radius: 50%; background: var(--card); display: grid; place-items: center; text-align: center; }
 .ring b { font-size: 34px; font-weight: 900; display: block; line-height: 1; }
 .ring span { color: var(--muted); font-weight: 700; font-size: 13px; }
@@ -179,7 +179,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 
 .typebars { display: grid; gap: 10px; }
 .typebar { display: grid; grid-template-columns: 170px 1fr 56px; gap: 12px; align-items: center; font-weight: 700; font-size: 14.5px; }
-.typebar .track { height: 8px; border-radius: 99px; background: #e9ecf1; overflow: hidden; }
+.typebar .track { height: 8px; border-radius: 99px; background: #f1e6c6; overflow: hidden; }
 .typebar .track i { display: block; height: 100%; border-radius: 99px; background: var(--accent); }
 .typebar .v { text-align: right; color: var(--muted); }
 
@@ -206,7 +206,7 @@ kbd { font-family: var(--ui); background: #eef0f3; border: 1px solid var(--line)
 }
 
 /* ---------- Tabs ---------- */
-.tabs { display: flex; gap: 4px; padding: 4px; background: #eceef2; border-radius: 12px; margin-bottom: 16px; width: fit-content; }
+.tabs { display: flex; gap: 4px; padding: 4px; background: #f3e7c4; border-radius: 12px; margin-bottom: 16px; width: fit-content; }
 .tabs button { padding: 9px 18px; border-radius: 9px; font-weight: 900; font-size: 15px; color: var(--muted); }
 .tabs button small { font-weight: 700; font-size: 12.5px; margin-left: 4px; opacity: .8; }
 .tabs button.on { background: var(--card); color: var(--text); box-shadow: 0 1px 3px rgba(16, 24, 40, .12); }
