@@ -96,7 +96,7 @@ function m6Sentence(q, filled) {
     const txt = filled ? esc(q.parts[q.order[i - 1] - 1]) : (isStar ? '★' : '');
     return `<span class="slot ${isStar ? 'star' : ''} ${filled ? 'filled' : ''}">${filled && isStar ? '<i>★</i>' : ''}${txt}</span>`;
   }).join('');
-  return `${esc(q.before || '')}${slots}${esc(q.after || '')}`;
+  return `${esc(q.before || '')}${slots}${esc(q.after || '')}`.replace(/\n/g, '<br>');
 }
 
 function renderGrammarQuestion() {
