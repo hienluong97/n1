@@ -31,31 +31,50 @@ const typeLabel = t => `<span class="jp">${TYPE_INFO[t].jp}</span>${TYPE_INFO[t]
 // ============================================================
 // TRANG CHỦ
 // ============================================================
+let section = store.get('n1q_section', 'vocab');
+
+function heroHtml() {
+  return `
+    <div class="hero">
+      <div class="logo">N1</div>
+      <div>
+        <h1>N1 Quizizz</h1>
+        <p>Từ vựng & ngữ pháp JLPT N1</p>
+      </div>
+    </div>`;
+}
+function tabsHtml(active) {
+  return `
+    <div class="tabs">
+      <button data-sec="vocab" class="${active === 'vocab' ? 'on' : ''}">Từ vựng <small>${WORDS.length} từ</small></button>
+      <button data-sec="grammar" class="${active === 'grammar' ? 'on' : ''}">Ngữ pháp <small>Mondai 5 · 6</small></button>
+    </div>`;
+}
+function bindTabs() {
+  $app.querySelectorAll('[data-sec]').forEach(b => b.onclick = () => { section = b.dataset.sec; store.set('n1q_section', section); renderHome(); });
+}
+
 function renderHome() {
   stopTimer();
   S = null;
+  if (section === 'grammar' && typeof renderGrammarHome === 'function') return renderGrammarHome();
   const wrongSet = { id: 'wrong', title: 'Từ hay sai', icon: '🎯', words: WORDS.filter(w => wrongIds.has(w.id)) };
   const special = SETS.filter(s => s.special);
   const years = SETS.filter(s => !s.special);
 
   $app.innerHTML = `
-    <div class="hero">
-      <div class="logo">N1</div>
-      <div>
-        <h1>N1 Quizizz</h1>
-        <p>${WORDS.length} từ vựng JLPT N1 đã ra thi · 2010 – 2026</p>
-      </div>
-    </div>
+    ${heroHtml()}
+    ${tabsHtml('vocab')}
 
     <div class="controls">
       <div class="panel">
         <div class="label">Chế độ</div>
         <div class="seg">
           <button data-mode="practice" class="${mode === 'practice' ? 'on' : ''}">
-            <b>📚 Luyện tập</b><span>Học hết từ trong tập · sai sẽ được hỏi lại</span>
+            <b>Luyện tập</b><span>Học hết từ trong tập · sai sẽ được hỏi lại</span>
           </button>
           <button data-mode="test" class="${mode === 'test' ? 'on' : ''}">
-            <b>📝 Kiểm tra</b><span>${TEST_SIZE} câu ngẫu nhiên · ${TEST_SECONDS} giây/câu · chấm điểm</span>
+            <b>Kiểm tra</b><span>${TEST_SIZE} câu ngẫu nhiên · ${TEST_SECONDS} giây/câu · chấm điểm</span>
           </button>
         </div>
       </div>
@@ -67,18 +86,19 @@ function renderHome() {
       </div>
     </div>
 
-    <div class="section-title"><h2>⭐ Tập đặc biệt</h2><span>Bấm vào một tập để bắt đầu</span></div>
+    <div class="section-title"><h2>Tập đặc biệt</h2><span>Bấm vào một tập để bắt đầu</span></div>
     <div class="grid">
       ${special.map(s => setCard(s, s.id === 'freq' ? 'feature' : '')).join('')}
       ${wrongSet.words.length ? setCard(wrongSet, 'wrongset') : ''}
     </div>
 
-    <div class="section-title"><h2>📅 Theo năm thi</h2><span>${years.length} tập</span></div>
+    <div class="section-title"><h2>Theo năm thi</h2><span>${years.length} tập</span></div>
     <div class="grid">${years.map(s => setCard(s)).join('')}</div>
 
     <div class="foot">Phím tắt: <kbd>1</kbd>–<kbd>4</kbd> chọn đáp án · <kbd>Enter</kbd> câu tiếp · Tiến độ được lưu trên trình duyệt này</div>
   `;
 
+  bindTabs();
   $app.querySelectorAll('[data-mode]').forEach(b => b.onclick = () => { mode = b.dataset.mode; store.set('n1q_mode', mode); renderHome(); });
   $app.querySelectorAll('[data-type]').forEach(b => b.onclick = () => {
     const t = b.dataset.type;
@@ -174,7 +194,7 @@ function renderQuestion() {
     ${S.mode === 'test' ? '<div class="timer"><i id="tbar"></i></div>' : ''}
     <div class="qcard">
       <div class="qtag">${typeLabel(q.type)}</div>
-      <div class="qset">${S.set.icon} ${S.set.title}</div>
+      <div class="qset">${S.set.title}</div>
       <div class="hint">${q.hint}</div>
       ${q.prompt}
       ${q.sub}
@@ -232,7 +252,7 @@ function answer(i) {
     S.points += gained;
     known.add(w.id); wrongIds.delete(w.id);
     if (S.mode === 'practice') S.done.add(w.id);
-    popup('+' + gained, '#7ff0b2');
+    popup('+' + gained, 'var(--ok)');
   } else {
     S.streak = 0;
     wrongIds.add(w.id);
@@ -261,8 +281,8 @@ function trapNote(q, w, i) {
 
 function renderFeedback(q, w, i, ok, gained) {
   const head = ok
-    ? `<div class="fb-head ok"><span>✅ Chính xác!</span><small>+${gained} điểm${S.streak > 1 ? ` · 🔥 ${S.streak} câu liên tiếp` : ''}</small></div>`
-    : `<div class="fb-head bad"><span>${i < 0 ? '⏰ Hết giờ!' : '❌ Sai rồi!'}</span><small>Đáp án đúng: <span class="jp">${esc(q.options[q.correctIndex])}</span></small></div>`;
+    ? `<div class="fb-head ok"><span>✓ Chính xác!</span><small>+${gained} điểm${S.streak > 1 ? ` · 🔥 ${S.streak} câu liên tiếp` : ''}</small></div>`
+    : `<div class="fb-head bad"><span>${i < 0 ? 'Hết giờ!' : '✗ Sai rồi!'}</span><small>Đáp án đúng: <span class="jp">${esc(q.options[q.correctIndex])}</span></small></div>`;
   const last = S.mode === 'test' ? S.idx + 1 >= S.queue.length : (S.idx + 1 >= S.queue.length);
   document.getElementById('fb').innerHTML = `
     <div class="feedback">
@@ -278,7 +298,7 @@ function renderFeedback(q, w, i, ok, gained) {
           <div class="mean">${esc(w.mean)}</div>
           ${w.origin ? `<div class="row">Gốc từ: <b>${esc(w.origin)}</b></div>` : ''}
           ${w.syn ? `<div class="row">Đồng nghĩa (言い換え): <b class="jp">${esc(w.syn)}</b></div>` : ''}
-          <div class="row">Loại từ: <b>${POS_LABEL[w.pos]}</b> · Đề thi: <b>${esc(w.exam)}</b>${w.freq ? ' · <b style="color:var(--gold)">⭐ Thường xuất hiện</b>' : ''}</div>
+          <div class="row">Loại từ: <b>${POS_LABEL[w.pos]}</b> · Đề thi: <b>${esc(w.exam)}</b>${w.freq ? ' · <b style="color:var(--mark)">Thường xuất hiện</b>' : ''}</div>
           ${w.ex ? `<div class="ex"><div class="j">${highlightIn(w.ex, w)}</div><div class="v">${esc(w.exVi)}</div></div>` : ''}
           ${trapNote(q, w, i)}
         </div>
@@ -369,7 +389,7 @@ function renderResult(early) {
       </div>
     </div>
 
-    <div class="section-title"><h2>📊 Theo dạng câu hỏi</h2></div>
+    <div class="section-title"><h2>Theo dạng câu hỏi</h2></div>
     <div class="panel typebars">
       ${Object.keys(byType).length ? ALL_TYPES.filter(t => byType[t]).map(t => {
         const [r, tot] = byType[t];
@@ -377,7 +397,7 @@ function renderResult(early) {
       }).join('') : '<div class="empty">Chưa có câu trả lời nào.</div>'}
     </div>
 
-    <div class="section-title"><h2>❌ Từ cần ôn</h2><span>${wrongWords.length} từ</span></div>
+    <div class="section-title"><h2>Từ cần ôn</h2><span>${wrongWords.length} từ</span></div>
     <div class="wrong-list">
       ${wrongWords.length ? [...wrongMap.values()].map(x => {
         const w = WORDS[x.q.wordId];
@@ -398,5 +418,3 @@ function renderResult(early) {
   if (redo) redo.onclick = () => { startSession({ ...set, title: 'Ôn từ sai', icon: '🎯' }, 'practice', wrongWords); S.isRetry = true; };
   window.scrollTo(0, 0);
 }
-
-renderHome();
